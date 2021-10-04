@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, saveTodo } from '../../reducers/todos';
+import Button from '../Button/Button';
 import './TodoItem.scss';
 
 const TodoItem = ({ todo, index }) => {
@@ -10,7 +11,7 @@ const TodoItem = ({ todo, index }) => {
   const dispatch = useDispatch();
 
   const handleDeleteClick = () => {
-    dispatch(deleteTodo(index));
+    dispatch(deleteTodo(todo.id, index));
   };
 
   const handleEditClick = () => {
@@ -41,26 +42,18 @@ const TodoItem = ({ todo, index }) => {
         />
       )}
       <div>
-        <button
-          type="button"
-          className="delete-btn"
-          onClick={handleDeleteClick}
-        >
+        <Button name="delete" onClick={handleDeleteClick}>
           <i className="fas fa-trash" />
-        </button>
+        </Button>
         {!isActive && (
-          <button
-            type="button"
-            className="edit-btn"
-            onClick={handleEditClick}
-          >
+          <Button name="edit" onClick={handleEditClick}>
             <i className="fas fa-edit" />
-          </button>
+          </Button>
         )}
         {isActive && (
-          <button type="button" className="save-btn" onClick={handleSaveClick}>
+          <Button name="save" onClick={handleSaveClick}>
             <i className="fas fa-save" />
-          </button>
+          </Button>
         )}
       </div>
     </li>
