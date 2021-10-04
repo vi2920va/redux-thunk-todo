@@ -6,7 +6,9 @@ const Button = ({ type = 'button', children, name, onClick }) => {
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-    onClick(isClicked);
+    if (onClick) {
+      onClick(isClicked);
+    }
   };
 
   return (
