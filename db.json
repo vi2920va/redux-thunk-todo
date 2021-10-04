@@ -1,19 +1,6 @@
 {
-  "todos": [
-    {
-      "id": 1,
-      "value": "Hello React!",
-      "isCompleted": false
-    },
-    {
-      "id": 2,
-      "value": "Hi Redux.",
-      "isCompleted": false
-    },
-    {
-      "id": 3,
-      "value": "Welcome.",
-      "isCompleted": false
-    }
-  ]
+  "todos": [{
+    "value": "Hello Redux",
+    "id": 1
+  }]
 }
