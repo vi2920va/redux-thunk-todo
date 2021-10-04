@@ -13,11 +13,6 @@ const TodoList = () => {
     dispatch(loadTodos());
   }, []);
 
-  useEffect(() => {
-    // dispatch(loadTodos());
-    console.log(todos);
-  }, [todos]);
-
   return (
     <main className="todo">
       <div className="todo-container">
@@ -27,10 +22,9 @@ const TodoList = () => {
             Get things done. one item a time.
           </span>
         </h1>
-
         <ul className="todo-list">
           {todos.map((todo, index) => (
-            <TodoItem key={todo.id} todo={todo} index={index}/>
+            <TodoItem key={index} todo={todo} index={index} />
           ))}
         </ul>
         <Form />
