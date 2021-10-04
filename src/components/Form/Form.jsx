@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../reducers/todos';
+import Button from '../Button/Button';
 import './Form.scss';
 
 const Form = () => {
-
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
@@ -28,9 +28,9 @@ const Form = () => {
         value={value}
         onChange={handleInputChange}
       />
-      <button type="submit" className="add-btn">
+      <Button type="submit" name="add">
         ADD ITEM
-      </button>
+      </Button>
     </form>
   );
 };
