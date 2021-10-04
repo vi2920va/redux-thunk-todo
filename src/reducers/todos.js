@@ -3,54 +3,45 @@ import axios from 'axios';
 const LOAD_TODOS = 'LOAD_TODOS';
 const ADD_TODO = 'ADD_TODO';
 const DELETE_TODO = 'DELETE_TODO';
-const EDIT_TODO = 'EDIT_TODO';
+const SAVE_TODO = 'SAVE_TODO';
 
 export const loadTodos = () => async (dispatch) => {
-  const response = await axios.get('http://localhost:5001/todos');
+  const response = await axios.get('http://localhost:5000/todos');
   dispatch({ type: LOAD_TODOS, payload: response.data });
 };
 
 export const addTodo = (value) => async (dispatch) => {
-  const result = await axios({
-    method: 'post',
-    url: 'http://localhost:5001/todos',
-    data: {
-      value: value,
-      isCompleted: false,
-    },
+  const response = await axios.post('http://localhost:5000/todos', {
+    value: value,
   });
-  dispatch({ type: ADD_TODO, payload: result });
+  dispatch({ type: ADD_TODO, payload: response });
 };
 
-export const deleteTodo = (id) => ({
-  type: DELETE_TODO,
-  id,
-});
+export const deleteTodo = (id, index) => async (dispatch) => {
+  const response = await axios.delete(`http://localhost:5000/todos/${id}`);
+  dispatch({ type: DELETE_TODO, payload: response, index });
+};
 
-export const editTodo = (value, id) => ({
-  type: EDIT_TODO,
-  value,
-  id,
-});
+export const saveTodo = (item, index) => async (dispatch) => {
+  const response = await axios.put(`http://localhost:5000/todos/${item.id}`, {
+    value: item.value,
+  });
+  dispatch({ type: SAVE_TODO, payload: response, index });
+};
 
 export default function todos(state = [], action) {
+  const list = [...state];
   switch (action.type) {
     case LOAD_TODOS:
       return action.payload;
     case ADD_TODO:
-      
-      console.log(state, action.payload);
-      console.log(action);
-      const id = Date.now().toString();
-      // return [
-      //   ...state,
-      //   {
-      //     id,
-      //     value: action.value,
-      //     isCompleted: false,
-      //   },
-      // ];
-    return
+      return [...state, action.payload.data];
+    case DELETE_TODO:
+      list.splice(action.index, 1);
+      return list;
+    case SAVE_TODO:
+      list.splice(action.index, action.payload);
+      return list;
     default:
       return state;
   }
