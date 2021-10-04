@@ -8,10 +8,11 @@ import App from './pages/App';
 import './styles/reset.scss';
 import './styles/common.scss';
 
-// compose - 함수를 오른쪽에서 왼쪽으로 조합
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 render(
   <Provider store={store}>
