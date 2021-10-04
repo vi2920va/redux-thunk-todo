@@ -1,0 +1,19 @@
+.todo-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3.5rem;
+  margin: 0 -3rem 0.5rem;
+  font-size: 1.25rem;
+  background: rgba(105, 72, 72, 0.1);
+
+  button {
+    font-size: 1.188rem;
+    color: #fff;
+
+    &:hover {
+      color: #e44c4c;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+@mixin flex-cross-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-main-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-main-end{
+  display: flex;
+  justify-content: flex-end;
+}
+
